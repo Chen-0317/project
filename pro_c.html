@@ -78,6 +78,7 @@
     <script src="js/jquery-3.7.0.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/wow.min.js"></script>
+    <script src="js/api_link.js"></script>
 
     <script>
         $(function () {
@@ -169,7 +170,7 @@
                     console.log("參數正確，可傳送至後端API");
                     $.ajax({
                         type: "POST",
-                        url: "product_api/pro_c_api.php",
+                        url:api_link+ "product_api/pro_c_api.php",
                         dataType: "json",
                         data: { pname: $("#pname").val(), price: $("#price").val(), pnum: $("#pnum").val(), peffect: $("#peffect").val(), file: file_upload.files[0].name },
                         success: showdata,
@@ -199,7 +200,7 @@
             // 將收集完成的資料 formData 傳遞至 api
             $.ajax({
                 type: "POST",
-                url: "product_api/file_img_api.php",
+                url:api_link+ "product_api/file_img_api.php",
                 data: formData,
                 dataType: "json",
                 cache: false,

@@ -837,6 +837,7 @@
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/counterup2@2.0.2/dist/index.js"></script>
     <script src="js/wow.min.js"></script>
+    <script src="js/api_link.js"></script>
 
 
     <script>
@@ -888,7 +889,7 @@
                 // uid 存在: 傳遞至後端 check_uid_api.php 確認是否合法
                 $.ajax({
                     type: "POST",
-                    url: "member_api/check_uid_api.php",
+                    url:api_link+ "member_api/check_uid_api.php",
                     data: { uid: getCookie('uid') },
                     dataType: "json",
                     success: showdata_check_uid,
@@ -919,7 +920,7 @@
                     //傳遞帳號至後端API 確認是否可以使用
                     $.ajax({
                         type: "POST",
-                        url: "member_api/reg_check_uni_api.php",
+                        url:api_link+ "member_api/reg_check_uni_api.php",
                         data: { username: $("#reg_username").val() },
                         dataType: "json",
                         success: showdata_check_uni,
@@ -1008,7 +1009,7 @@
                     // 欄位輸入正確，可以傳至API
                     $.ajax({
                         type: "POST",
-                        url: "member_api/reg_api.php",
+                        url:api_link+ "member_api/reg_api.php",
                         data: {
                             username: $("#reg_username").val(), password: $("#reg_password01").val(), nickname: $("#reg_nickname").val(),
                             email: $("#reg_mail").val(),
@@ -1052,7 +1053,7 @@
                 // 傳遞 login_api.php 執行登入行為
                 $.ajax({
                     type: "POST",
-                    url: "member_api/login_api.php",
+                    url:api_link+ "member_api/login_api.php",
                     data: { username: $("#login_username").val(), password: $("#login_password").val() },
                     dataType: "json",
                     success: showdata_login,

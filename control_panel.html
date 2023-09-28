@@ -151,6 +151,7 @@
     </div>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/jquery-3.7.0.min.js"></script>
+    <script src="js/api_link.js"></script>
     <script>
         var u_id; //for update
         $(function () {
@@ -159,7 +160,7 @@
                 //uid是存在, 傳遞至後端check_uid_api.php確認是否合法
                 $.ajax({
                     type: "POST",
-                    url: "member_api/check_uid_api.php",
+                    url:api_link+ "member_api/check_uid_api.php",
                     data: { uid: getCookie('uid') },
                     dataType: "json",
                     success: showdata_check_uid,
@@ -221,7 +222,7 @@
 
                 $.ajax({
                     type: "POST",
-                    url: "member_api/control_panel_u_mem_api.php",
+                    url:api_link+ "member_api/control_panel_u_mem_api.php",
                     data: {
                         id: u_id,
                         level: $("#level").val(),
@@ -263,7 +264,7 @@
                 //顯示功能畫面
                 $.ajax({
                     type: "GET",
-                    url: "member_api/control_panel_r_mem_api.php",
+                    url:api_link+ "member_api/control_panel_r_mem_api.php",
                     dataType: "json",
                     async: false,
                     success: showdata_table,
@@ -311,7 +312,7 @@
                         //傳遞後端control_panel_d_mem_api.php執行刪除
                         $.ajax({
                             type: "POST",
-                            url: "member_api/control_panel_d_mem_api.php",
+                            url:api_link+ "member_api/control_panel_d_mem_api.php",
                             data: { id: $(this).data("id") },
                             dataType: "json",
                             success: showdata_delete,
@@ -341,7 +342,7 @@
                     //傳遞 id 和 啟用/停權 至後端更新會員狀態
                     $.ajax({
                         type: "POST",
-                        url: "member_api/control_panel_u_mem_userstate_api.php",
+                        url:api_link+ "member_api/control_panel_u_mem_userstate_api.php",
                         data: { id: state_id, userstate: userstate },
                         dataType: "json",
                         success: showdata_u_mem_userstate,
@@ -368,7 +369,7 @@
             // 將收集完成的資料 formData 傳遞至 api
             $.ajax({
                 type: "POST",
-                url: "member_api/file_img_api.php",
+                url:api_link+ "member_api/file_img_api.php",
                 data: formData,
                 dataType: "json",
                 cache: false,

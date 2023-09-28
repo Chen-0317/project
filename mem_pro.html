@@ -443,12 +443,13 @@
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/counterup2@2.0.2/dist/index.js"></script>
     <script src="js/wow.min.js"></script>
+    <script src="js/api_link.js"></script>
 
     <script>
         $(function () {
             $.ajax({
                 type: "GET",
-                url: "product_api/mem_pro_r_api.php",
+                url:api_link+ "product_api/mem_pro_r_api.php",
                 dataType: "json",
                 success: showdata,
                 error: function () {

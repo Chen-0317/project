@@ -158,6 +158,7 @@
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/counterup2@2.0.2/dist/index.js"></script>
     <script src="js/wow.min.js"></script>
+    <script src="js/api_link.js"></script>
     <script>
         $(function () {
             //確認uid是否存在, 若存在傳遞至後端check_uid_api.php確認是否合法
@@ -165,7 +166,7 @@
                 //uid是存在, 傳遞至後端check_uid_api.php確認是否合法
                 $.ajax({
                     type: "POST",
-                    url: "member_api/check_uid_api.php",
+                    url:api_link+ "member_api/check_uid_api.php",
                     data: { uid: getCookie('uid') },
                     dataType: "json",
                     success: showdata_check_uid,
@@ -242,7 +243,7 @@
 
                 $.ajax({
                     type: "POST",
-                    url: "member_api/mem_u_api.php",
+                    url:api_link+ "member_api/mem_u_api.php",
                     data: formData,
                     processData: false, // 不處理數據
                     contentType: false, // 不設置Content-Type頭部
@@ -292,7 +293,7 @@
             // 將收集完成的資料 formData 傳遞至 api
             $.ajax({
                 type: "POST",
-                url: "member_api/file_img_api.php",
+                url:api_link+ "member_api/file_img_api.php",
                 data: formData,
                 dataType: "json",
                 cache: false,

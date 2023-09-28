@@ -119,6 +119,7 @@
     <script src="js/jquery-3.7.0.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/wow.min.js"></script>
+    <script src="js/api_link.js"></script>
 
     <script>
         $(function () {
@@ -127,7 +128,7 @@
                 //uid是存在, 傳遞至後端check_uid_api.php確認是否合法
                 $.ajax({
                     type: "POST",
-                    url: "member_api/check_uid_api.php",
+                    url:api_link+ "member_api/check_uid_api.php",
                     data: { uid: getCookie('uid') },
                     dataType: "json",
                     success: showdata_check_uid,
@@ -201,7 +202,7 @@
 前端 / 後端串接，基本結構
 $.ajax({
     type: "",  用甚麼方式取得後端訊息
-    url: "",   後端訊息的位置(網址)
+    url:api_link+ "",   後端訊息的位置(網址)
     erroe: function(){   
         console.log();   錯誤會出現甚麼訊息
     }

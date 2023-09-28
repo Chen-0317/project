@@ -79,6 +79,7 @@
     <script src="js/jquery-3.7.0.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/wow.min.js"></script>
+    <script src="js/api_link.js"></script>
 
     <script>
         new WOW().init();
@@ -86,7 +87,7 @@
         $(function () {
             $.ajax({
                 type: "get",
-                url: "product_api/pro_r_api.php",
+                url:api_link+ "product_api/pro_r_api.php",
                 dataType : "json",
                 success: showdata,
                 error: function () {
@@ -121,7 +122,7 @@
 前端 / 後端串接，基本結構
 $.ajax({
     type: "",  用甚麼方式取得後端訊息
-    url: "",   後端訊息的位置(網址)
+    url:api_link+ "",   後端訊息的位置(網址)
     erroe: function(){   
         console.log();   錯誤會出現甚麼訊息
     }
