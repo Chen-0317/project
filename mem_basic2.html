@@ -217,7 +217,7 @@
                 $("#nickname").val($(this).data("nickname"));
                 $("#email").val($(this).data("email"));
                 $("#phone").val($(this).data("phone"));
-                $("#previmg").attr('src', "mem_img_upload/" + filename);
+                $("#previmg").attr('src', api_link+"mem_img_upload/" + filename);
 
                 uid = $(this).data("id");
             });
@@ -270,7 +270,7 @@
                 // console.log(data);
 
                 $("#mybody").empty();
-                var strHTML = '<tr><td data-th="帳號"><span class="table-col">' + data.data[0].Username + '</span></td><td data-th="暱稱"><span class="table-col">' + data.data[0].Nickname + '</span></td><td data-th="Mail"><span class="table-col">' + data.data[0].Email + '</span></td><td data-th="電話"><span class="table-col"></span>' + data.data[0].Phone + '</span></td><td data-th="大頭照"><span class="table-col"><img src="mem_img_upload/' + data.data[0].Photo + '" alt="" height="150px"></span></td><td><a href="#" class="btn btn-warning me-2" data-bs-toggle="modal" data-bs-target="#updateModal" data-id="' + data.data[0].ID + '" data-username="' + data.data[0].Username + '" data-nickname="' + data.data[0].Nickname + '" data-email="' + data.data[0].Email + '" data-phone="' + data.data[0].Phone + '" data-file_upload="' + data.data[0].Photo + '" id="update_btn">更新</a></td></tr>';
+                var strHTML = '<tr><td data-th="帳號"><span class="table-col">' + data.data[0].Username + '</span></td><td data-th="暱稱"><span class="table-col">' + data.data[0].Nickname + '</span></td><td data-th="Mail"><span class="table-col">' + data.data[0].Email + '</span></td><td data-th="電話"><span class="table-col"></span>' + data.data[0].Phone + '</span></td><td data-th="大頭照"><span class="table-col"><img src="'+api_link+'mem_img_upload/' + data.data[0].Photo + '" alt="" height="150px"></span></td><td><a href="#" class="btn btn-warning me-2" data-bs-toggle="modal" data-bs-target="#updateModal" data-id="' + data.data[0].ID + '" data-username="' + data.data[0].Username + '" data-nickname="' + data.data[0].Nickname + '" data-email="' + data.data[0].Email + '" data-phone="' + data.data[0].Phone + '" data-file_upload="' + data.data[0].Photo + '" id="update_btn">更新</a></td></tr>';
 
                 $("#mybody").append(strHTML);
 
