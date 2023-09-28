@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap');
+
+body {
+    font-family: 'Anton', sans-serif;
+    font-family: 'Noto Sans TC', sans-serif;
+}
+
+:root {
+    --color01: #025464;
+    --color02: #E57C23;
+    --color03: #F6FFA6;
+    --color04: #F8F1F1;
+    --color05: #E1EEDD;
+    --color06: #393646;
+    --color07: #ACB1D6;
+    --color08: #F0EB8D;
+    --color09: #CFB997;
+    --color10: #EAC7C7;
+    --color11: #A0C3D2;
+    --color12: #F3E8FF;
+    --color13: #E8F6EF;
+    --color14: #F9F5F6;
+    --color15: #F8E8EE;
+    --color16: #FDCEDF;
+    --color17: #F2BED1;
+    --color18: #FFDCB6;
+    --color19: #ECC9EE;
+    --color20: #C9A7EB;
+    --color21: #9384D1;
+    --color22: #AAE3E2;
+    --color23: #D9ACF5;
+    --color24: #FFCEFE;
+    --color25: #FDEBED;
+    --color26: #002B5B;
+    --color27: #4d58be;
+}
+
+.demo {
+    border: 2px solid var(--color02);
+    margin: 0px;
+    padding: 10px;
+}
+
+.fw-100 {
+    font-weight: 100;
+}
+
+.fw-300 {
+    font-weight: 300;
+}
+
+.fw-400 {
+    font-weight: 400;
+}
+
+.fw-500 {
+    font-weight: 500;
+}
+
+.fw-700 {
+    font-weight: 700;
+}
+
+.fw-900 {
+    font-weight: 900;
+}
+
+.box01 {
+    width: 10px;
+    height: 100px;
+    margin-bottom: 5px;
+    border: 2px solid var(--color02);
+}
+
+.box02 {
+    height: 120px;
+    margin-top: 15px;
+    border: 2px solid var(--color16);
+    background-color: var(--color07);
+}
+
+.bg-cover {
+    background-position: center center;
+    background-size: cover;
+}

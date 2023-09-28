@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理員 - 產品資料建檔</title>
+    <link rel="stylesheet" href="css/my.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css_4.1.1_animate.min.css">
+    <link rel="stylesheet" href="css/all.min.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">後臺管理</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="control_panel.html">會員管理</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="pro_c.html">產品新增</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="pro_r.html">產品管理</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="contauner p-5">
+        <div class="row justify-content-center border border-2 rounded-5 p-5">
+            <div class="col-me-10">
+                <div class="mb-3">
+                    <label for="pname" class="form-label">產品名稱</label>
+                    <input type="text" class="form-control" id="pname" name="pname" placeholder="藥材名稱">
+                    <div class="valid-feedback">輸入正確</div>
+                    <div class="invalid-feedback">輸入錯誤</div>
+                </div>
+                <div class="mb-3">
+                    <label for="price" class="form-label">產品價格</label>
+                    <input type="number" min="0" max="120" class="form-control" id="price" name="price"
+                        placeholder="一單位多少錢">
+                    <div class="valid-feedback">輸入正確</div>
+                    <div class="invalid-feedback">輸入錯誤</div>
+                </div>
+                <div class="mb-3">
+                    <label for="pnum" class="form-label">單位</label>
+                    <input type="text" class="form-control" id="pnum" name="pnum" placeholder="單位">
+                    <div class="valid-feedback">輸入正確</div>
+                    <div class="invalid-feedback">輸入錯誤</div>
+                </div>
+                <div class="mb-3">
+                    <label for="peffect" class="form-label">藥效</label>
+                    <input type="text" class="form-control" id="peffect" name="peffect" placeholder="藥效">
+                    <div class="valid-feedback">輸入正確</div>
+                    <div class="invalid-feedback">輸入錯誤</div>
+                </div>
+                <div class="mb-3">
+                    <label for="file_upload" class="form-label">檔案上傳(圖片)</label>
+                    <input type="file" class="form-control" id="file_upload" name="file_upload">
+                    <img src="#" alt="" id="previmg" class="d-none w-50 mt-3">
+                </div>
+                <div class="text-center">
+                    <a href="#" class="btn btn-primary" id="ok_btn" name="ok_btn">確認</a>
+                    <a href="#" class="btn btn-secondary">取消</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/jquery-3.7.0.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/wow.min.js"></script>
+
+    <script>
+        $(function () {
+            var flag_pname = false;
+            var flag_price = false;
+            var flag_pnum = false;
+            flag_peffect = false
+
+            // 即時監聽 pname
+            $("#pname").bind("input propertychange", function () {
+                // console.log($(this).val().length);
+                if ($(this).val().length > 1 && $(this).val().length < 10) {
+                    $(this).removeClass("is-invalid");
+                    $(this).addClass("is-valid");
+                    flag_pname = true;
+                } else {
+                    $(this).removeClass("is-valid");
+                    $(this).addClass("is-invalid");
+                    flag_pname = false;
+                }
+            });
+
+            // 即時監聽 price
+            $("#price").bind("input propertychange", function () {
+                if ($(this).val() > 0 && $(this).val() < 90000) {
+                    $(this).removeClass("is-invalid");
+                    $(this).addClass("is-valid");
+                    flag_price = true;
+                } else {
+                    $(this).removeClass("is-valid");
+                    $(this).addClass("is-invalid");
+                    flag_price = false;
+                }
+            });
+
+            // 即時監聽 pnnm
+            $("#pnum").bind("input propertychange", function () {
+                if ($(this).val().length > 0 && $(this).val().length < 5) {
+                    $(this).removeClass("is-invalid");
+                    $(this).addClass("is-valid");
+                    flag_pnum = true;
+                } else {
+                    $(this).removeClass("is-valid");
+                    $(this).addClass("is-invalid");
+                    flag_pnum = false;
+                }
+            });
+
+            //即時監聽 p - effect
+            $("#peffect").bind("input propertychange", function () {
+                if ($(this).val().length > 0 && $(this).val().length < 32) {
+                    $(this).removeClass("is-invalid");
+                    $(this).addClass("is-valid");
+                    flag_peffect = true;
+                } else {
+                    $(this).removeClass("is-valid");
+                    $(this).addClass("is-invalid");
+                    flag_peffect = false;
+                }
+            });
+
+            // 即時監聽 img
+            $("#file_upload").change(function () {
+                console.log("test");
+                console.log(file_upload);
+                console.log(file_upload.files[0]); // 出現圖片的詳細資料
+                console.log(file_upload.files[0].name);
+                console.log(file_upload.files[0].type);
+                console.log(file_upload.files[0].size);
+                console.log(URL.createObjectURL(file_upload.files[0]));
+                // 生成可預覽圖片的網址 
+
+                // 只接受 jpeg / png 格式的圖片
+                if (file_upload.files[0].type == 'image/jpeg' || file_upload.files[0].type == 'image/png') {
+                    $("#previmg").removeClass('d-none');
+                    $("#previmg").attr('src', URL.createObjectURL(file_upload.files[0]))
+                    // attr -> 將監聽物件 內的一個元素換掉
+                } else {
+                    alert("只支援 jpeg / png 格式圖片，請重新上傳");
+                    $("#previmg").addClass('d-none');
+                }
+            });
+
+            $("#ok_btn").click(function () {
+
+                uploadFile();
+
+                if (flag_pname && flag_price && flag_pnum && flag_peffect) {
+                    console.log("參數正確，可傳送至後端API");
+                    $.ajax({
+                        type: "POST",
+                        url: "product_api/pro_c_api.php",
+                        dataType: "json",
+                        data: { pname: $("#pname").val(), price: $("#price").val(), pnum: $("#pnum").val(), peffect: $("#peffect").val(), file: file_upload.files[0].name },
+                        success: showdata,
+                        error: function () {
+                            alert("錯誤-product_api/pro_c_api.php");
+                        }
+                    })
+                } else {
+                    console.log(flag_pname);
+                    console.log(flag_price);
+                    console.log(flag_pnum);
+                    console.log(flag_peffect);
+                    console.log("參數錯誤，不可傳送至後端API");
+                }
+            });
+        });
+
+        function uploadFile() {
+            console.log(file_upload);
+            console.log(file_upload.files[0]);
+
+            // 轉換格式 符合$_FILE需求 ； 利用 FormData()
+            var formData = new FormData();
+            formData.append('file', file_upload.files[0]);
+            console.log(formData);
+
+            // 將收集完成的資料 formData 傳遞至 api
+            $.ajax({
+                type: "POST",
+                url: "product_api/file_img_api.php",
+                data: formData,
+                dataType: "json",
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: showdata_uploadFile,
+                error: function () {
+                    alert("error - product_api/file_img_api.php");
+                }
+            });
+        }
+
+        function showdata_uploadFile(data) {
+            console.log(data);
+        }
+
+        function showdata(data) {
+            console.log(data);
+            if (data.state) {
+                alert(data.message);
+                location.href = "pro_c.html";
+                // location.href = "20230801-create.html" 前往哪一個網址，前往自己 = 重新整理
+            } else {
+                alert(data.message);
+            }
+        }
+    </script>
+</body>
+
+</html>

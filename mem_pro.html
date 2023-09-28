@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>藥材</title>
+    <link rel="stylesheet" href="css/my.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css_4.1.1_animate.min.css">
+    <link rel="stylesheet" href="css/all.min.css">
+
+    <style>
+        #top-bar {
+            position: fixed;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+        }
+
+        #top-bar a {
+            float: right;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 767px) {
+            #top-bar {
+                right: 30px !important;
+                bottom: 100px !important;
+            }
+
+            #top-bar a {
+                margin-bottom: 10px;
+            }
+
+            #top-bar img {
+                width: 95%;
+                height: auto;
+            }
+        }
+
+        @font-face {
+            font-family: 'icomoon';
+
+            src: url('../fonts/icomoon.eot?mz9gi1');
+            src: url('../fonts/icomoon.eot?mz9gi1#iefix') format('embedded-opentype'),
+                url('../fonts/icomoon.ttf?mz9gi1') format('truetype'),
+                url('../fonts/icomoon.woff?mz9gi1') format('woff'),
+                url('../fonts/icomoon.svg?mz9gi1#icomoon') format('svg');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        [class^="icon-"],
+        [class*=" icon-"] {
+            /* use !important to prevent issues with browser extensions that change fonts */
+            font-family: 'icomoon' !important;
+            font-style: normal;
+            font-weight: normal;
+            font-variant: normal;
+            text-transform: none;
+            line-height: 1;
+
+            /* Better Font Rendering =========== */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .icon-gotop:before {
+            content: "\e900";
+        }
+
+        .icon-left:before {
+            content: "\e902";
+            font-size: 70px;
+        }
+
+        .icon-right:before {
+            content: "\e901";
+            font-size: 70px;
+        }
+
+
+        @media screen and (min-width: 992px) {
+            .icon-left:before {
+                font-size: 90px;
+            }
+
+            .icon-right:before {
+                font-size: 90px;
+            }
+        }
+
+
+        #gotop:hover {
+            background: #6ccbcf !important;
+            border: solid 1px #fff !important;
+        }
+
+        #gotop {
+            display: none;
+            position: fixed;
+            right: 30px !important;
+            bottom: 50px !important;
+            padding: 10px 15px 4px !important;
+            font-size: 30px !important;
+            background: #2b71ad !important;
+            color: #fff !important;
+            cursor: pointer !important;
+            -webkit-border-radius: 30px !important;
+            -moz-border-radius: 30px !important;
+            border-radius: 30px !important;
+            z-index: 10;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 跟屁蟲 -->
+    <div id="top-bar">
+        <a href="#" target="_blank">
+            <img src="images/G.png" border="0" title="更多優惠" alt="更多優惠" class="discount">
+        </a>
+        <a href="#" target="_blank">
+            <img src="images/G.png" border="0" title="購物車" alt="購物車" class="shop">
+        </a>
+        <a href="#" target="_blank">
+            <img src="images/G.png" border="0" title="立即預約" alt="立即預約" class="phone">
+        </a>
+    </div>
+
+    <!-- s10 -->
+    <!-- fontawesome -->
+    <section id="s10" class="bg-info">
+        <div class="container text-end">
+            <a href="#"><i class="fa-solid fa-cart-shopping text-light fa-1x me-2"></i></a>
+            <a href="#"><i class="fa-solid fa-user text-light fa-1x me-2"></i></a>
+            <a href="#"><i class="fa-regular fa-comment-dots text-light fa-1x me-4"></i></a>
+        </div>
+    </section>
+
+    <!-- s20 -->
+    <section id="s20">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">
+                        <i class=" dog fa-solid fa-shield-dog text-bg-dark fa-3x"></i> <!-- fa-2x 更改數字 可以改變大小-->
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" aria-current="page" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa-solid fa-house me-2 "></i>
+                                    首頁
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="nav-item ms-1">
+                                        <a class="nav-link" href="#s60">
+                                            <i class="fa-solid fa-globe me-2"></i>最新消息</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <i class="fa-solid fa-handshake me-1 "></i>
+                                    販賣商品
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="nav-item ms-1">
+                                        <a class="nav-link" href="#">
+                                            <i class="fa-solid fa-cubes  me-2"></i>藥材</a>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li class="nav-item ms-1">
+                                        <a class="nav-link" href="#s52">
+                                            <i class="fa-solid fa-cubes me-2"></i>保健食品</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" aria-current="page" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa-solid fa-list me-1"></i>
+                                    導覽介紹
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="nav-item ms-2">
+                                        <a class="nav-link" href="#s32">
+                                            <i class="fa-solid fa-arrow-down-wide-short me-1 "></i>
+                                            購物車使用</a>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li class="nav-item ms-2">
+                                        <a class="nav-link" href="#s50">
+                                            <i class="fa-solid fa-circle-info me-1"></i>細部介紹</a>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li class="nav-item ms-2">
+                                        <a class="nav-link" href="#s70">
+                                            <i class="fa-brands fa-product-hunt me-1"></i>優惠介紹</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" aria-current="page" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa-solid fa-circle-question  me-1"></i>
+                                    相關資訊
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="nav-item ms-2">
+                                        <a class="nav-link" href="#s80">
+                                            <i class="fa-solid fa-map-location-dot  me-1"></i>實體據點</a>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li class="nav-item ms-2">
+                                        <a class="nav-link" href="#s100">
+                                            <i class="fa-solid fa-link  me-1"></i>友善連結</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <form class="d-flex me-2 mb-1" role="search">
+                            <a href="#" class="btn btn-outline-primary me-2" data-bs-toggle="modal"
+                                data-bs-target="#loginModal" id="s20_login_btn">登錄</a>
+                            <!-- outline 變空心 -->
+                            <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#regModal"
+                                id="s20_reg_btn">註冊</a>
+                            <span>
+                                <h3 class="text-white d-none" id="login_message">歡迎xxx回來</h3>
+                            </span>
+                            <a href="control_panel.html" class="btn btn-danger d-none ms-2" target="_blank"
+                                id="s20_AdminCtrl_btn">後台管理</a>
+                            <a href="control_panel_2.html" class="btn btn-danger d-none ms-2" target="_blank"
+                                id="s20_MemCtrl_btn">會員中心</a>
+                            <a href="pro_r.html" class="btn btn-danger d-none ms-2" target="_blank"
+                                id="s20_ProCtrl_btn">產品列表</a>
+                            <a href="#" class="btn btn-success d-none ms-2" target="_blank" id="s20_signout_btn">登出</a>
+                        </form>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </section>
+
+    <hr>
+
+    <!-- loginModal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header text-bg-primary">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">會員登錄</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="login_username" class="form-label">登錄帳號</label>
+                        <input type="text" class="form-control" name="login_username" id="login_username"
+                            placeholder="--">
+                    </div>
+                    <div class="mb-3">
+                        <label for="login_password" class="form-label">登錄密碼</label>
+                        <input type="password" class="form-control" name="login_password" id="login_password"
+                            placeholder="--">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="me-auto" data-bs-toggle="modal" data-bs-target="#regModal">尚未進行註冊，立即前往</a>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" id="login_btn" data-bs-dismiss="modal">確認</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- regModal -->
+    <div class="modal fade" id="regModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header text-bg-success">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">會員註冊</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row timeline-section">
+                        <div class="col-6">
+                            <h3>會員守則</h3>
+                            <p>本網站和服務的使用授權在終止前皆有效。如發生本服務條款所載之終止事由或是您未遵循本服務條款之任何條款或條件的情況時，此授權將會終止。在這些情況下，平台可另行通知您逕行終止授權
+                            </p>
+                            <p class="mb-auto">違反此政策可能導致一系列處分動作，包括但不限於下列任何或全部項目：
+                                刪除刊登商品;
+                                限制帳戶權限;
+                                中止帳戶及隨後終止;
+                                刑事訴訟;
+                                民事求償，包括但不限於請求損害賠償及/或聲請保全處分
+                            </p>
+                            <div class="form-check">
+                                <input type="checkbox" id="feedback" name="feedback" class="form-check-input">
+                                <label for="feedback" class="form-check-label">同意相關規定</label>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label for="reg_username" class="form-label">帳號</label>
+                                <input type="text" class="form-control" name="reg_username" id="reg_username"
+                                    placeholder="請設置5~8個字的帳號">
+                                <div class="valid-feedback" id="valid_message">帳號輸入正確</div>
+                                <div class="invalid-feedback" id="invalid_message">帳號輸入錯誤</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="reg_password01" class="form-label">密碼</label>
+                                <input type="password" class="form-control" name="reg_password01" id="reg_password01"
+                                    placeholder="請設置6~12個字的密碼">
+                                <div class="valid-feedback">輸入正確</div>
+                                <div class="invalid-feedback">輸入錯誤</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="reg_password02" class="form-label">確認密碼</label>
+                                <input type="password" class="form-control" name="reg_password02" id="reg_password02"
+                                    placeholder="請再次輸入密碼">
+                                <div class="valid-feedback">輸入正確</div>
+                                <div class="invalid-feedback">輸入錯誤</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="reg_nickname" class="form-label">暱稱</label>
+                                <input type="text" class="form-control" name="reg_nickname" id="reg_nickname"
+                                    placeholder="請輸入暱稱">
+                                <div class="valid-feedback">輸入正確</div>
+                                <div class="invalid-feedback">輸入錯誤</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="reg_mail" class="form-label">Email</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="reg_mail" id="reg_mail"
+                                        placeholder="請輸入mail">
+                                </div>
+                                <div class="valid-feedback">輸入正確</div>
+                                <div class="invalid-feedback">輸入錯誤</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="reg_phone" class="form-label">手機</label>
+                                <input type="text" class="form-control" name="reg_phone" id="reg_phone"
+                                    placeholder="請輸入手機">
+                                <div class="valid-feedback">輸入正確</div>
+                                <div class="invalid-feedback">輸入錯誤</div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="me-auto" data-bs-toggle="modal" data-bs-target="#loginModal">已有帳號，前往進行登錄</a>
+                    <button type="button" class="btn btn-secondary" id="reg_btn">確認</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="background-color: bisque;">
+        <div class="container p-5">
+            <div class="row" id="mybody">
+                <div class="col-md-4 col-lg-2 d-flex flex-column card">
+                    <img src="https://ezgo.coa.gov.tw/Uploads/opendata/TainmaMain01/APPLY_D/20151007173924.jpg">
+                    <h3 class="text-center mt-1">湖莓宴餐坊</h3>
+                    <p>苗栗縣大湖鄉富興村八寮彎2-7號4樓<span></span></p>
+                    <div>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal">
+                            詳細資料
+                        </button>
+                        <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i
+                                class="fa-solid fa-cart-shopping"></i></button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 點擊 "詳細資料" 彈窗 model -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="model_content">...</div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 加入購物車 -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Understood</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    <script src="js/jquery-3.7.0.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/counterup2@2.0.2/dist/index.js"></script>
+    <script src="js/wow.min.js"></script>
+
+    <script>
+        $(function () {
+            $.ajax({
+                type: "GET",
+                url: "product_api/mem_pro_r_api.php",
+                dataType: "json",
+                success: showdata,
+                error: function () {
+                    alert(" error - product_api/mem_pro_r_api.php");
+                }
+            });
+        });
+
+        function showdata(data) {
+            console.log(data);
+            $("#mybody").empty();
+
+            data.forEach(function (data) {
+                // var strHTML = '<div class="col-md-3 col-lg-2 d-flex flex-column card p-2 m-1"><img src="img_upload/' + data.P_photo + '" height="200px"><h3 class="text-center mt-1">' + data.P_name + '</h3><p class="text-center>' + data.P_num + '' + data.P_price + '元</p><a href="#" class="btn btn-info mt-auto mb-3">詳細資料</a></div>';
+                var strHTML = '<div class="col-md-3 col-lg-2 d-flex flex-column card p-2 m-1">';
+                strHTML += '<img src="images/' + data.P_photo + '" height="150px">';
+                strHTML += '<h4 class="text-center mt-2">' + data.P_name + '</h4>';
+                strHTML += '<p class="text-center">' + data.P_num + ' ' + data.P_price + '元</p>';
+                strHTML += '<div><button type="button" class="btn btn-outline-info me-2" data-bs-toggle="modal" data-bs-target="#exampleModal" data-id="' + data.ID + '" data-name="' + data.P_name + '" data-effect="' + data.P_effect + '" >詳細資料</button>';
+                strHTML += '<button type="button" class="btn btn-outline-warning"><i class="fa-solid fa-cart-shopping"></i></button></div>';
+                strHTML += '</div>';
+                $("#mybody").append(strHTML);
+            });
+        }
+
+        $(document).on("click", ".btn-outline-info", function () {
+            var id = $(this).data("id");
+            var name = $(this).data("name");
+            var effect = $(this).data("effect");
+
+            $("#model_content").html(effect); //  data.P_effect 放入 Modal 中
+            $(".modal-title").html(name); //  data.P_name 放入 Modal 標題
+
+            // 顯示 Modal
+            $("#exampleModal").modal("show");
+        });
+
+
+        //gotop按鈕
+        $(" #gotop ").hide();
+        $(function () {
+            $("#gotop").click(function () {
+                jQuery("html,body").animate({
+                    scrollTop: 0
+                }, 1000);
+            });
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 300) {
+                    $('#gotop').fadeIn("fast");
+                } else {
+                    $('#gotop').stop().fadeOut("fast");
+                }
+            });
+        });
+
+        // 跟屁蟲
+        $(window).load(function () {
+            var $win = $(window),
+                $ad = $('#top-bar').css('opacity', 0).show(),	// 讓廣告區塊變透明且顯示出來
+                _width = $ad.width(),
+                _height = $ad.height(),
+                _diffY = 150, _diffX = 25,	// 距離右及上方邊距
+                _moveSpeed = 300;	// 移動的速度
+
+            $ad.css({
+                top: _diffY,	// 往上
+                left: $win.width() - _width - _diffX,
+                opacity: 1
+            });
+
+            // 幫網頁加上 scroll 及 resize 事件
+            $win.bind('scroll resize', function () {
+                var $this = $(this);
+
+                $ad.stop().animate({
+                    top: $this.scrollTop() + _diffY,	// 往上
+                    left: $this.scrollLeft() + $this.width() - _width - _diffX
+                }, _moveSpeed);
+            }).scroll();	// 觸發一次 scroll()
+        });
+
+        //跟屁蟲hover
+        $(function () {
+            $("#top-bar .online").hover(function () {
+                $(this).attr("src", "images/icon01-1.png");
+            }, function () {
+                $(this).attr("src", "images/icon01.png");
+            });
+            $("#top-bar .shop").hover(function () {
+                $(this).attr("src", "images/icon02-1.png");
+            }, function () {
+                $(this).attr("src", "images/icon02.png");
+            });
+            $("#top-bar .phone").hover(function () {
+                $(this).attr("src", "images/icon03-1.png");
+            }, function () {
+                $(this).attr("src", "images/icon03.png");
+            });
+        });
+
+        $(function () {
+            $('.carousel').carousel({
+                interval: 12000,
+                pause: '',
+                wrap: true,
+                keyboard: true
+            });
+        })
+
+        $(document).ready(function () {
+            $('#carousel-id').swiperight(function () {
+                $(this).carousel('prev');
+            });
+            $('#carousel-id').swipeleft(function () {
+                $(this).carousel('next');
+            });
+        });
+
+    </script>
+</body>
+
+</html>

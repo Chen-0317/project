@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 管理員 - 產品列表 </title>
+    <link rel="stylesheet" href="css/my.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css_4.1.1_animate.min.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <style>
+        .table-rwd {
+            margin-top: 15px;
+        }
+
+        @media screen and (max-width:768px) {
+            .table-rwd thead {
+                display: none;
+            }
+
+            .table-rwd tbody tr {
+                display: block;
+                border: 2px solid var(--color01);
+                margin-top: 10px;
+            }
+
+            .table-rwd tbody tr td {
+                display: block;
+                overflow: hidden;
+                font-weight: 700;
+            }
+
+            .table-rwd tbody tr td::before {
+                content: attr(data-th)" : ";
+                color: var(--color02);
+                display: block;
+                float: left;
+                width: 6em;
+                text-align: right;
+                padding-right: 1em;
+            }
+
+            .table-rwd tbody tr td span.table-col {
+                display: block;
+                float: left;
+                width: calc(100% - 6em);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">後臺管理</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="control_panel.html">會員管理</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="pro_c.html">產品新增</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="pro_r.html">產品管理</a>
+                    </li>
+                </ul>
+
+                <!-- <div>
+                    <span class="h3 fw-700 text-danger" id="login_meaasge"></span>
+                    <a href="#" class="btn btn-success" id="logout_btn">登出</a>
+                </div> -->
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-rwd">
+                    <thead class="text-bg-dark">
+                        <tr>
+                            <th width="5%">編號</th>
+                            <th width="10%">產品名稱</th>
+                            <th width="5%">產品價格</th>
+                            <th width="5%">單位</th>
+                            <th width="20%">產品圖</th>
+                            <th width="25%">功效</th>
+                            <th width="10%">建檔時間</th>
+                            <th width="20%">#</th>
+                        </tr>
+                    </thead>
+                    <tbody id="mybody">
+                        <tr>
+                            <td data-th="編號"><span class="table-col">037-995677</span></td>
+                            <td data-th="產品名稱"><span class="table-col">湖苺宴開在大湖酒莊的4樓</span></td>
+                            <td data-th="產品價格"><span class="table-col">True</span></td>
+                            <td data-th="產品數量"><span class="table-col">苗栗縣</span></td>
+                            <td data-th="產品圖"><span class="table-col"><img
+                                        src="http://192.168.10.80/web202305/project/img_upload/03.jpg" alt=""
+                                        height="150px"></span></td>
+                            <td data-th="功效"><span class="table-col">苗栗縣大湖鄉富興村八寮彎2-7號4樓</span></td>
+                            <td data-th="建檔時間"><span class="table-col">苗栗縣大湖鄉富興村八寮彎2-7號4樓</span></td>
+                            <td><a href="#" class="btn btn-warning me-2" data-bs-toggle="modal"
+                                    data-bs-target="#updateModal" id="update_btn">更新</a><a href="#"
+                                    class="btn btn-danger" id="delete_btn">刪除</a>
+                            </td>
+                        </tr>
+                    </tbody>
+            </div>
+        </div>
+    </div>
+
+    <!-- updateModal -->
+    <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-info">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">產品更新</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="pname" class="form-label">產品名稱</label>
+                        <input type="text" class="form-control" id="pname" name="pname" placeholder="產品名">
+                        <div class="valid-feedback">輸入正確</div>
+                        <div class="invalid-feedback">輸入錯誤</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="price" class="form-label">單位價格</label>
+                        <input type="number" min="0" max="120" class="form-control" id="price" name="price"
+                            placeholder="一單位價格">
+                        <div class="valid-feedback">輸入正確</div>
+                        <div class="invalid-feedback">輸入錯誤</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="pnum" class="form-label">單位</label>
+                        <input type="text" class="form-control" id="pnum" name="pnum" placeholder="">
+                        <div class="valid-feedback">輸入正確</div>
+                        <div class="invalid-feedback">輸入錯誤</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="peffect" class="form-label">藥效</label>
+                        <input type="text" class="form-control" id="peffect" name="peffect" placeholder="">
+                        <div class="valid-feedback">輸入正確</div>
+                        <div class="invalid-feedback">輸入錯誤</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="file_upload" class="form-label">檔案上傳(圖片)</label>
+                        <input type="file" class="form-control" id="file_upload" name="file_upload">
+                        <img src="#" alt="" id="previmg" class="w-50 mt-3">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" id="modal_update_btn">確認更新</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/jquery-3.7.0.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/wow.min.js"></script>
+
+    <script>
+        new WOW().init();
+        var uid;
+
+        $(function () {
+            $.ajax({
+                type: "get",
+                url: "product_api/pro_r_api.php",
+                dataType: "json",
+                async: false,   // 取消(簡->難)的預設處理順序
+                success: showdata,
+                error: function () {
+                    alert("資料串接錯誤-product_api/pro_r_api.php");
+                }
+            })
+
+            // 監聽更新按鈕 update_btn
+            $("#mybody #update_btn").click(function () {
+                // ajax 的訊息，需有兩個以上的定位，才能順利找到
+                console.log($(this).data("id"));
+                console.log($(this).data("pname"));
+                console.log($(this).data("price"));
+                console.log($(this).data("pnum"));
+                console.log($(this).data("peffect"));
+                console.log($(this).data("file_upload"));
+
+                var filename = $(this).data("file_upload");
+
+                // 將data-XXX 的信息，傳入modal表單
+                $("#pname").val($(this).data("pname"));
+                $("#price").val($(this).data("price"));
+                $("#pnum").val($(this).data("pnum"));
+                $("#peffect").val($(this).data("peffect"));
+                $("#previmg").attr('src', 'img_upload/' + filename);
+
+                uid = $(this).data("id");
+            });
+
+            $("#file_upload").change(function () {
+                console.log("test");
+                console.log(file_upload);
+                console.log(file_upload.files[0]); // 出現圖片的詳細資料
+                console.log(file_upload.files[0].name);
+                console.log(file_upload.files[0].type);
+                console.log(file_upload.files[0].size);
+                console.log(URL.createObjectURL(file_upload.files[0]));
+                // 生成可預覽圖片的網址 
+
+                // 只接受 jpeg / png 格式的圖片
+                if (file_upload.files[0].type == 'image/jpeg' || file_upload.files[0].type == 'image/png') {
+                    $("#previmg").removeClass('d-none');
+                    $("#previmg").attr('src', URL.createObjectURL(file_upload.files[0]))
+                    // attr -> 將監聽物件 內的一個元素換掉
+                } else {
+                    alert("只支援 jpeg / png 格式圖片，請重新上傳");
+                    $("#previmg").addClass('d-none');
+                }
+            });
+
+            // 監聽刪除按鈕 delete_btn
+            $("#mybody #delete_btn").click(function () {
+                console.log($(this).data("id"));
+
+                if (confirm("確認刪除?")) {
+                    $.ajax({
+                        type: "POST",
+                        url: "product_api/pro_d_api.php",
+                        data: { id: $(this).data("id") },
+                        dataType: "json",
+                        success: showdata_delete,
+                        error: function () {
+                            alert("錯誤 - product_api/pro_d_api.php");
+                        }
+                    });
+                }
+            });
+
+
+
+            // 監聽確認更新按鈕 modal_update_btn
+            $("#modal_update_btn").click(function () {
+
+                console.log($("#pname").val());
+                console.log($("#price").val());
+                console.log($("#pnum").val());
+                console.log($("#peffect").val());
+                console.log(file_upload.files[0]);
+                console.log(uid);
+
+                uploadFile();
+                // 傳遞至update api 執行更新
+                var formData = new FormData();
+                formData.append("pname", $("#pname").val());
+                formData.append("price", $("#price").val());
+                formData.append("pnum", $("#pnum").val());
+                formData.append("peffect", $("#peffect").val());
+                formData.append("file", file_upload.files[0]);
+                formData.append("id", uid);
+
+                $.ajax({
+                    type: "POST",
+                    url: "product_api/pro_u_api.php",
+                    data: formData,
+                    processData: false, // 不處理數據
+                    contentType: false, // 不設置Content-Type頭部
+                    dataType: "json",
+                    success: showdata_update,
+                    error: function () {
+                        alert("錯誤 - product_api/pro_u_api.php");
+                    }
+                });
+
+                function uploadFile() {
+                    console.log(file_upload);
+                    console.log(file_upload.files[0]);
+
+                    // 轉換格式 符合$_FILE需求 ； 利用 FormData()
+                    var formData = new FormData();
+                    formData.append('file', file_upload.files[0]);
+                    console.log(formData);
+
+                    // 將收集完成的資料 formData 傳遞至 api
+                    $.ajax({
+                        type: "POST",
+                        url: "product_api/file_img_api.php",
+                        data: formData,
+                        dataType: "json",
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        success: showdata_uploadFile,
+                        error: function () {
+                            alert("error - product_api/file_img_api.php");
+                        }
+                    });
+                }
+
+                function showdata_uploadFile(data) {
+                    console.log(data);
+                }
+            });
+
+            //監聽登出按鈕 #logout_btn
+            $("#logout_btn").click(function () {
+                logout();
+            });
+        });
+
+
+
+        function showdata(data) {
+            // console.log(data);
+            $("#mybody").empty();
+
+            // forEach 可以顯示陣列
+            data.forEach(function (item) {
+                // console.log(item);
+                var strHTML = '<tr><td data-th="編號"><span class="table-col">' + item.ID + '</span></td><td data-th="產品名稱"><span class="table-col">' + item.P_name + '</span></td><td data-th="產品價格"><span class="table-col">' + item.P_price + '</span></td><td data-th="產品數量"><span class="table-col">' + item.P_num + '</span></td><td data-th="產品圖"><span class="table-col"><img src="images/' + item.P_photo + '" alt="" height="100px"></span><td data-th="功效"><span class="table-col">'+ item.P_effect +'</span></td></td><td data-th="建檔時間"><span class="table-col">' + item.Created_at + '</span></td><td><a href="#" class="btn btn-warning me-2"data-bs-toggle="modal" data-bs-target="#updateModal"  data-id="' + item.ID + '" data-pname="' + item.P_name + '" data-price="' + item.P_price + '" data-pnum="' + item.P_num + '" data-peffect="' + item.P_effect + '" data-file_upload="' + item.P_photo + '" id="update_btn">更新</a><a href="#" class="btn btn-danger" data-id="' + item.ID + '" id="delete_btn">刪除</a></td></tr>';
+                $("#mybody").append(strHTML);
+            });
+        }
+
+        function showdata_update(data) {
+            console.log(data);
+            if (data.state) {
+                alert(data.message);
+                location.href = "pro_r.html";
+            } else {
+                alert(data.message);
+            }
+        }
+
+        function showdata_delete(data) {
+            console.log(data);
+            if (data.state) {
+                alert(data.message);
+                location.href = "pro_r.html";
+            } else {
+                alert(data.message);
+            }
+        }
+
+        //登出帳號
+        //刪除uid並重整畫面
+        function logout() {
+            setCookie('uid', '', 7);
+            location.href = "Home.html";
+        }
+    </script>
+</body>
+
+</html>

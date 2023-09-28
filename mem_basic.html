@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>會員中心</title>
+    <link rel="stylesheet" href="css/my.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css_4.1.1_animate.min.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <style>
+        .thisbox {
+            width: 120px;
+            height: 120px;
+            display: inline-block;
+        }
+
+        .thisdemo {
+            padding: 15px;
+            background-color: var(--color13);
+            margin-top: 10px;
+        }
+
+        .thisdemo01 {
+            width: 400px;
+            height: 250px;
+            border: 1px solid var(--color26);
+        }
+
+        .thisbox01 {
+            width: 50px;
+            height: 50px;
+            background-color: var(--color02);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 本功能需要登入會員後才能寬看
+    出現登入會員帳號與登出按鈕 -->
+    <section id="s10" class="bg-secondary">
+        <div class="container text-end">
+            <a href="#"><i class="fa-solid fa-cart-shopping text-info fa-1x me-2"></i></a>
+            <a href="#"><i class="fa-solid fa-user text-info fa-1x me-2"></i></a>
+            <a href="#"><i class="fa-regular fa-comment-dots text-info fa-1x ms-2 me-4"></i></a>
+        </div>
+    </section>
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+        <div class="container">
+            <a class="navbar-brand text-bg-dark mb-3" href="control_panel_2.html"> -- 會員中心 --</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-3 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active mb-2" id="login_meaasge" aria-current="page"></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="mem_basic.html" id="Basic_btn"> - 會員基本信息
+                            -</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="mem_bill.html" id="Bill_btn"> - 訂單管理 - </a>
+                    </li>
+                </ul>
+                <a href="#" class="btn btn-success mb-2" id="logout_btn">首頁</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <ul class="nav">
+                    <li class="nav-item mt-2 mb-2">
+                        <a class="nav-link text-bg-dark" aria-current="page" href="mem_bill.html"> 前往訂單管理 >>> </a>
+                    </li>
+                </ul>
+                <table class="table table-rwd">
+                    <thead class="text-bg-dark">
+                        <tr>
+                            <th width="10%">帳號</th>
+                            <th width="10%">暱稱</th>
+                            <th width="15%">Mail</th>
+                            <th width="10%">電話</th>
+                            <th width="30%">大頭照</th>
+                            <th width="20%">#</th>
+                        </tr>
+                    </thead>
+                    <tbody id="mybody">
+                        <tr>
+                            <td data-th="帳號" style="vertical-align: middle;"><span class="table-col">' +
+                                    data.data[0].Username + '</span></td>
+                            <td data-th="暱稱" style="vertical-align: middle;"><span class="table-col">' +
+                                    data.data[0].Nickname + '</span></td>
+                            <td data-th="Mail" style="vertical-align: middle;"><span class="table-col">' +
+                                    data.data[0].Email + '</span></td>
+                            <td data-th="電話" style="vertical-align: middle;"><span class="table-col"></span>' +
+                                data.data[0].Phone + '</span></td>
+                            <td data-th="大頭照" style="vertical-align: middle;"><span class="table-col"><img
+                                        src="mem_img_upload/' + data.data[0].Photo + '" alt="" height="150px"></span>
+                            </td>
+                            <td style="vertical-align: middle;"><a href="#" class="btn btn-warning me-2"
+                                    data-bs-toggle="modal" data-bs-target="#updateModal"
+                                    data-id="' + data.data[0].ID + '" data-username="' + data.data[0].Username + '"
+                                    data-nickname="' + data.data[0].Nickname + '"
+                                    data-email="' + data.data[0].Email + '" data-phone="' + data.data[0].Phone + '"
+                                    data-file_upload="' + data.data[0].Photo + '" id="update_btn">更新</a></td>
+                        </tr>
+                    </tbody>
+            </div>
+        </div>
+    </div>
+
+    <!-- updateModal -->
+    <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-info">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">更新基本信息</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">會員帳號</label>
+                        <input type="text" class="form-control" id="username" name="username" disabled>
+                    </div>
+                    <div class="mb-3">
+                        <label for="nickname" class="form-label">暱稱</label>
+                        <input type="text" class="form-control" id="nickname" name="nickname">
+                        <div class="valid-feedback">輸入正確</div>
+                        <div class="invalid-feedback">輸入錯誤</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Mail</label>
+                        <input type="text" min="0" max="120" class="form-control" id="email" name="email"
+                            placeholder="">
+                        <div class="valid-feedback">輸入正確</div>
+                        <div class="invalid-feedback">輸入錯誤</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">電話</label>
+                        <input type="text" class="form-control" id="phone" name="phone" placeholder="">
+                        <div class="valid-feedback">輸入正確</div>
+                        <div class="invalid-feedback">輸入錯誤</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="file_upload" class="form-label">檔案上傳(圖片)</label>
+                        <input type="file" class="form-control" id="file_upload" name="file_upload">
+                        <img src="#" alt="" id="previmg" class="w-50 mt-3">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" id="modal_update_btn">確認更新</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/jquery-3.7.0.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/counterup2@2.0.2/dist/index.js"></script>
+    <script src="js/wow.min.js"></script>
+    <script>
+        $(function () {
+            //確認uid是否存在, 若存在傳遞至後端check_uid_api.php確認是否合法
+            if (getCookie('uid') != "") {
+                //uid是存在, 傳遞至後端check_uid_api.php確認是否合法
+                $.ajax({
+                    type: "POST",
+                    url: "member_api/check_uid_api.php",
+                    data: { uid: getCookie('uid') },
+                    dataType: "json",
+                    success: showdata_check_uid,
+                    error: function () {
+                        alert("error-member_api/check_uid_api.php");
+                    }
+                });
+            } else {
+                //uid是不存在
+                alert("請先登入會員!");
+                location.href = "Home.html";
+            }
+
+            // 監聽更新按鈕 update_btn
+            $("#mybody").on('click', '#update_btn', function () {
+                // ajax 的訊息，需有兩個以上的定位，才能順利找到
+                console.log($(this).data("id"));
+                console.log($(this).data("username"));
+                console.log($(this).data("nickname"));
+                console.log($(this).data("email"));
+                console.log($(this).data("phone"));
+                console.log($(this).data("file_upload"));
+
+                var filename = $(this).data("file_upload");
+                // 將data-XXX 的信息，傳入modal表單
+                $("#username").val($(this).data("username"));
+                $("#nickname").val($(this).data("nickname"));
+                $("#email").val($(this).data("email"));
+                $("#phone").val($(this).data("phone"));
+                $("#previmg").attr('src', "mem_img_upload/" + filename);
+
+                uid = $(this).data("id");
+            });
+
+            $("#file_upload").change(function () {
+                console.log("test");
+                console.log(file_upload);
+                console.log(file_upload.files[0]); // 出現圖片的詳細資料
+                console.log(file_upload.files[0].name);
+                console.log(file_upload.files[0].type);
+                console.log(file_upload.files[0].size);
+                console.log(URL.createObjectURL(file_upload.files[0]));
+                // 生成可預覽圖片的網址 
+
+                // 只接受 jpeg / png 格式的圖片
+                if (file_upload.files[0].type == 'image/jpeg' || file_upload.files[0].type == 'image/png') {
+                    $("#previmg").removeClass('d-none');
+                    $("#previmg").attr('src', URL.createObjectURL(file_upload.files[0]))
+                    // attr -> 將監聽物件 內的一個元素換掉
+                } else {
+                    alert("只支援 jpeg / png 格式圖片，請重新上傳");
+                    $("#previmg").addClass('d-none');
+                }
+            });
+
+            // 監聽確認更新按鈕 modal_update_btn
+            $("#modal_update_btn").click(function () {
+
+                console.log($("#nickname").val());
+                console.log($("#email").val());
+                console.log($("#phone").val());
+                console.log(file_upload.files[0]);
+                console.log(uid);
+
+                // 傳遞至update api 執行更新
+                var formData = new FormData();
+                formData.append("nickname", $("#nickname").val());
+                formData.append("email", $("#email").val());
+                formData.append("phone", $("#phone").val());
+                formData.append("file", file_upload.files[0]);
+                formData.append("id", uid);
+
+                uploadFile();
+
+                $.ajax({
+                    type: "POST",
+                    url: "member_api/mem_u_api.php",
+                    data: formData,
+                    processData: false, // 不處理數據
+                    contentType: false, // 不設置Content-Type頭部
+                    dataType: "json",
+                    success: showdata_update,
+                    error: function () {
+                        alert("錯誤 - member_api/mem_u_api.php");
+                    }
+                });
+            });
+
+            //監聽登出按鈕 #logout_btn
+            $("#logout_btn").click(function () {
+                logout();
+            });
+        });
+
+        function showdata_check_uid(data) {
+            console.log(data);
+            if (data.state) {
+                //uid 驗證成功
+                //顯示歡迎詞
+                $("#login_meaasge").text('歡迎會員: ' + data.data[0].Username);
+                // console.log(data);
+
+                $("#mybody").empty();
+                var strHTML = '<tr><td data-th="帳號" style="vertical-align: middle;"><span class="table-col">' + data.data[0].Username + '</span></td><td data-th="暱稱" style="vertical-align: middle;"><span class="table-col">' + data.data[0].Nickname + '</span></td><td data-th="Mail" style="vertical-align: middle;"><span class="table-col">' + data.data[0].Email + '</span></td><td data-th="電話" style="vertical-align: middle;"><span class="table-col"></span>' + data.data[0].Phone + '</span></td><td data-th="大頭照"><span class="table-col"><img src="mem_img_upload/' + data.data[0].Photo + '" alt="" height="150px"></span></td><td    style="vertical-align: middle;"><a href="#" class="btn btn-warning me-2" data-bs-toggle="modal" data-bs-target="#updateModal" data-id="' + data.data[0].ID + '" data-username="' + data.data[0].Username + '" data-nickname="' + data.data[0].Nickname + '" data-email="' + data.data[0].Email + '" data-phone="' + data.data[0].Phone + '" data-file_upload="' + data.data[0].Photo + '" id="update_btn">更新</a></td></tr>';
+
+                $("#mybody").append(strHTML);
+
+            } else {
+                //uid 驗證失敗
+                alert("請先登入會員!");
+                location.href = "Home.html";
+            }
+        }
+
+        function uploadFile() {
+            console.log(file_upload);
+            console.log(file_upload.files[0]);
+
+            // 轉換格式 符合$_FILE需求 ； 利用 FormData()
+            var formData = new FormData();
+            formData.append('file', file_upload.files[0]);
+            formData.append("id", uid);
+            console.log(formData);
+
+            // 將收集完成的資料 formData 傳遞至 api
+            $.ajax({
+                type: "POST",
+                url: "member_api/file_img_api.php",
+                data: formData,
+                dataType: "json",
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: showdata_uploadFile,
+                error: function () {
+                    alert("error - member_api/file_img_api.php");
+                }
+            });
+        }
+
+        function showdata_uploadFile(data) {
+            console.log(data);
+        }
+
+        function showdata_update(data) {
+            console.log(data);
+            if (data.state) {
+                alert(data.message);
+                location.href = "mem_basic.html";
+            } else {
+                alert(data.message);
+            }
+        }
+
+        //登出帳號
+        //刪除uid並重整畫面
+        function logout() {
+            setCookie('uid01', '', 7);
+            location.href = "Home.html";
+        }
+
+        //w3c
+        function setCookie(cname, cvalue, exdays) {
+            const d = new Date();
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            let expires = "expires=" + d.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        }
+        function getCookie(cname) {
+            let name = cname + "=";
+            let decodedCookie = decodeURIComponent(document.cookie);
+            let ca = decodedCookie.split(';');
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+    </script>
+</body>
+
+</html>

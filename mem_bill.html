@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>訂單查詢</title>
+    <link rel="stylesheet" href="css/my.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css_4.1.1_animate.min.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <style>
+        .table-rwd {
+            margin-top: 15px;
+        }
+
+        @media screen and (max-width:768px) {
+            .table-rwd thead {
+                display: none;
+            }
+
+            .table-rwd tbody tr {
+                display: block;
+                border: 2px solid var(--color01);
+                margin-top: 10px;
+            }
+
+            .table-rwd tbody tr td {
+                display: block;
+                overflow: hidden;
+                font-weight: 700;
+            }
+
+            .table-rwd tbody tr td::before {
+                content: attr(data-th)" : ";
+                color: var(--color02);
+                display: block;
+                float: left;
+                width: 6em;
+                text-align: right;
+                padding-right: 1em;
+            }
+
+            .table-rwd tbody tr td span.table-col {
+                display: block;
+                float: left;
+                width: calc(100% - 6em);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 本功能需要登入會員後才能寬看
+    出現登入會員帳號與登出按鈕 -->
+    <section id="s10" class="bg-secondary">
+        <div class="container text-end">
+            <a href="#"><i class="fa-solid fa-cart-shopping text-info fa-1x me-2"></i></a>
+            <a href="#"><i class="fa-solid fa-user text-info fa-1x me-2"></i></a>
+            <a href="#"><i class="fa-regular fa-comment-dots text-info fa-1x ms-2 me-4"></i></a>
+        </div>
+    </section>
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+        <div class="container">
+            <a class="navbar-brand text-bg-dark mb-3" href="control_panel_2.html"> -- 會員中心 --</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-3 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active mb-2" id="login_meaasge" aria-current="page"></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="mem_basic.html" id="Basic_btn"> - 會員基本信息
+                            -</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="mem_bill.html" id="Bill_btn"> - 訂單管理 - </a>
+                    </li>
+                </ul>
+                <a href="#" class="btn btn-success mb-2" id="logout_btn">首頁</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <ul class="nav">
+                    <li class="nav-item mt-2 mb-2">
+                        <a class="nav-link text-bg-dark" aria-current="page" href="mem_basic.html"> 前往基本信息 >>> </a>
+                    </li>
+                </ul>
+                <table class="table table-rwd">
+                    <thead class="text-bg-dark">
+                        <tr>
+                            <th width="20%">產品名稱</th>
+                            <th width="10%">單位價格</th>
+                            <th width="10%">單位</th>
+                            <th width="10%">商品圖</th>
+                            <th width="20%">建檔時間</th>
+                        </tr>
+                    </thead>
+                    <tbody id="mybody">
+                        <tr class="bg-info">
+                            <td data-th="產品名稱"><span class="table-col">湖苺宴開在大湖酒莊的4樓</span></td>
+                            <td data-th="產品價格"><span class="table-col">True</span></td>
+                            <td data-th="產品數量"><span class="table-col">苗栗縣</span></td>
+                            <td data-th="商品圖"><span class="table-col"><img src="#" alt=""></span></td>
+                            <td data-th="建檔時間"><span class="table-col">苗栗縣大湖鄉富興村八寮彎2-7號4樓</span></td>
+                        </tr>
+                    </tbody>
+            </div>
+        </div>
+    </div>
+    <script src="js/jquery-3.7.0.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/wow.min.js"></script>
+
+    <script>
+        $(function () {
+            //確認uid是否存在, 若存在傳遞至後端check_uid_api.php確認是否合法
+            if (getCookie('uid') != "") {
+                //uid是存在, 傳遞至後端check_uid_api.php確認是否合法
+                $.ajax({
+                    type: "POST",
+                    url: "member_api/check_uid_api.php",
+                    data: { uid: getCookie('uid') },
+                    dataType: "json",
+                    success: showdata_check_uid,
+                    error: function () {
+                        alert("error-member_api/check_uid_api.php");
+                    }
+                });
+            } else {
+                //uid是不存在
+                alert("請先登入會員!");
+                location.href = "Home.html";
+            }
+
+            //監聽登出按鈕 #logout_btn
+            $("#logout_btn").click(function () {
+                logout();
+            });
+        });
+
+        function showdata_check_uid(data) {
+            console.log(data);
+            if (data.state) {
+                //uid 驗證成功
+                //顯示歡迎詞
+                $("#login_meaasge").text('歡迎會員: ' + data.data[0].Username);
+                // console.log(data);
+
+            } else {
+                //uid 驗證失敗
+                alert("請先登入會員!");
+                location.href = "Home.html";
+            }
+        }
+
+        //登出帳號
+        //刪除uid並重整畫面
+        function logout() {
+            location.href = "Home.html";
+            setCookie('uid01', '', 7);
+            location.href = "Home.html";
+        }
+
+        //w3c
+        function setCookie(cname, cvalue, exdays) {
+            const d = new Date();
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            let expires = "expires=" + d.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        }
+        function getCookie(cname) {
+            let name = cname + "=";
+            let decodedCookie = decodeURIComponent(document.cookie);
+            let ca = decodedCookie.split(';');
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+    </script>
+</body>
+
+</html>
+
+<!-- 
+前端 / 後端串接，基本結構
+$.ajax({
+    type: "",  用甚麼方式取得後端訊息
+    url: "",   後端訊息的位置(網址)
+    erroe: function(){   
+        console.log();   錯誤會出現甚麼訊息
+    }
+})
+上方為主程式
+下方為定義
+function showdata(data){
+    console.log(data)  要印出(顯示)的訊息，給工程師看的
+    $("#").append() 要印出(顯示)的訊息，給使用者看的
+} 
+-->

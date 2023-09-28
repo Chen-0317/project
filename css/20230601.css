@@ -1,0 +1,33 @@
+:root {
+    /*  : root{} -> 定義變數 */
+    --color01: #F9F5F6;
+    --color02: #F8E8EE;
+    --color03: #FDCEDF;
+    --color04: #F2BED1;
+}
+
+.box {
+    /* 可以控制 <body> 的 box (17行 */
+    width: 200px;
+    height: 200px;
+    border: 2px solid #fa0;
+}
+
+.box01 {
+    width: 200px;
+    height: 200px;
+    border: 2px solid #faa;
+    padding: 10px;
+    /* 內距 -> 內縮的距離 */
+    box-sizing: border-box;
+    /* 固定框框，如果文字超過就會超出框框，避免版型跑掉 */
+}
+
+.box02 {
+    width: 150px;
+    height: 150px;
+    border: 2px solid var(--color02);
+    background-color: var(--color03);
+    /* var() -> 呼叫定義的變數(顏色) */
+    /* bgc ->  background-color: #fff */
+}

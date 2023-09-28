@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>串接資料練習</title>
+    <link rel="stylesheet" href="css/my.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css_4.1.1_animate.min.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <style>
+        .table-rwd {
+            margin-top: 15px;
+        }
+
+        @media screen and (max-width:768px) {
+            .table-rwd thead {
+                display: none;
+            }
+
+            .table-rwd tbody tr {
+                display: block;
+                border: 2px solid var(--color01);
+                margin-top: 10px;
+            }
+
+            .table-rwd tbody tr td {
+                display: block;
+                overflow: hidden;
+                font-weight: 700;
+            }
+
+            .table-rwd tbody tr td::before {
+                content: attr(data-th)" : ";
+                color: var(--color02);
+                display: block;
+                float: left;
+                width: 6em;
+                text-align: right;
+                padding-right: 1em;
+            }
+
+            .table-rwd tbody tr td span.table-col {
+                display: block;
+                float: left;
+                width: calc(100% - 6em);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-rwd">
+                    <thead class="text-bg-dark">
+                        <tr>
+                            <th width="20%">產品名稱</th>
+                            <th width="10%">單位價格</th>
+                            <th width="10%">單位</th>
+                            <th width="10%">商品圖</th>
+                            <th width="20%">建檔時間</th>
+                        </tr>
+                    </thead>
+                    <tbody id="mybody">
+                        <tr class="bg-info">
+                            <td data-th="產品名稱"><span class="table-col">湖苺宴開在大湖酒莊的4樓</span></td>
+                            <td data-th="產品價格"><span class="table-col">True</span></td>
+                            <td data-th="產品數量"><span class="table-col">苗栗縣</span></td>
+                            <td data-th="商品圖"><span class="table-col"><img src="#" alt=""></span></td>
+                            <td data-th="建檔時間"><span class="table-col">苗栗縣大湖鄉富興村八寮彎2-7號4樓</span></td>
+                        </tr>
+                    </tbody>
+            </div>
+        </div>
+    </div>
+    <script src="js/jquery-3.7.0.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/wow.min.js"></script>
+
+    <script>
+        new WOW().init();
+
+        $(function () {
+            $.ajax({
+                type: "get",
+                url: "product_api/pro_r_api.php",
+                dataType : "json",
+                success: showdata,
+                error: function () {
+                    alert("資料串接錯誤-product_api/pro_r_api.php");
+                }
+            })
+        })
+
+        function showdata(data) {
+            console.log(data);
+            $("#mybody").empty();
+
+            // for 跟 forEach 兩種寫法
+            // for (var i = 0; i < data.length; i++){
+            //     var strHTML = '<tr class="bg-info"><td data-th="編號"><span class="table-col">'+ data[i]["ID"] +'</span></td><td data-th="產品名稱"><span class="table-col">'+ data[i]["Pname"] +'</span></td><td data-th="產品價格"><span class="table-col">'+ data[i]["Price"] +'</span></td><td data-th="產品數量"><span class="table-col">'+ data[i]["Pnum"] +'</span></td><td data-th="建檔時間"><span class="table-col">'+ data[i]["Created_at"] +'</span></td></tr>';
+            //     $("#mybody").append(strHTML);
+            // } 
+            
+            // forEach 可以顯示陣列
+            data.forEach(function(item){
+                console.log(item);
+                var strHTML = '<tr class="bg-info"></td><td data-th="產品名稱"><span class="table-col">'+ item.P_name +'</span></td><td data-th="單位價格"><span class="table-col">'+ item.P_price +'</span></td><td data-th="單位"><span class="table-col">'+ item.P_num +'</span></td><td data-th="建檔時間"><span class="table-col">'+ item.Created_at +'</span></td></tr>';
+                $("#mybody").append(strHTML);
+            });
+        }   
+    </script>
+</body>
+
+</html>
+
+<!-- 
+前端 / 後端串接，基本結構
+$.ajax({
+    type: "",  用甚麼方式取得後端訊息
+    url: "",   後端訊息的位置(網址)
+    erroe: function(){   
+        console.log();   錯誤會出現甚麼訊息
+    }
+})
+上方為主程式
+下方為定義
+function showdata(data){
+    console.log(data)  要印出(顯示)的訊息，給工程師看的
+    $("#").append() 要印出(顯示)的訊息，給使用者看的
+} 
+-->
